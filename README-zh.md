@@ -34,6 +34,10 @@
    ```bash
    docker run -dit -p 1188:1188 --name deeplx deeplx:latest
    ```
+   或者从 dockerhub 拉取镜像：
+   ```bash
+   docker run -dit -p 1188:1188 --name deeplx yym68686/deeplx:latest
+   ```
 
 ### API 使用方法
 

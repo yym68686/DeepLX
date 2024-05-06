@@ -36,6 +36,11 @@ This project is a load balancer built using the Flask framework, designed to pro
    ```bash
    docker run -dit -p 1188:1188 --name deeplx deeplx:latest
    ```
+   or pull images from Docker Hub:
+   ```bash
+   docker run -dit -p 1188:1188 --name deeplx yym68686/deeplx:latest
+   ```
+
 
 ### Using the API
 
