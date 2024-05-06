@@ -32,7 +32,7 @@ def translate():
             if response.status_code == 200 and len(response.json()["data"]) > 0:
                 return jsonify(response.json()), 200
             else:
-                print(f"请求 {url} 失败：{str(e)}")
+                print(f"请求 {url} 失败，状态码 {response.status_code}")
                 continue  # 如果不是200，尝试下一个URL
         except requests.exceptions.RequestException as e:
             print(f"请求 {url} 失败：{str(e)}")
