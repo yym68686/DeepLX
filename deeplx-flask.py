@@ -28,9 +28,11 @@ def translate():
         print(url)
         try:
             response = requests.post(url + "?token=your_access_token", json=data, timeout=5)
-            if response.status_code == 200:
+            print(response.json())
+            if response.status_code == 200 and len(response.json()["data"]) > 0:
                 return jsonify(response.json()), 200
             else:
+                print(f"请求 {url} 失败：{str(e)}")
                 continue  # 如果不是200，尝试下一个URL
         except requests.exceptions.RequestException as e:
             print(f"请求 {url} 失败：{str(e)}")

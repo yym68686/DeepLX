@@ -1,4 +1,6 @@
 # docker build --no-cache -t deeplx .
+# docker tag deeplx:latest yym68686/deeplx:latest
+# docker push yym68686/deeplx:latest
 # docker run -dit -p 1188:1188 --name deeplx deeplx:latest
 FROM python:3.10.13 AS builder
 COPY ./requirements.txt /home
