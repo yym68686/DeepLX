@@ -22,22 +22,21 @@ def after_request(response):
 
 @app.route('/translate', methods=['POST'])
 def translate():
-    # 从迭代器中获取下一个 URL
-    url = next(url_cycle)
-    print(url)
-    # 获取传入的 JSON 数据
     data = request.get_json()
-    # 将请求转发到选定的翻译 API
-    try:
-        response = requests.post(url + "?token=your_access_token", json=data, timeout=5)
-        # 如果请求成功，返回响应内容
-        if response.status_code == 200:
-            return jsonify(response.json()), 200
-        else:
-            return jsonify({"error": "Remote server error", "status_code": response.status_code}), 502
-    except requests.exceptions.RequestException as e:
-        # 如果请求失败，返回错误信息
-        return jsonify({"error": str(e)}), 503
+    for _ in range(len(urls)):  # 尝试每个URL一次
+        url = next(url_cycle)
+        print(url)
+        try:
+            response = requests.post(url + "?token=your_access_token", json=data, timeout=5)
+            if response.status_code == 200:
+                return jsonify(response.json()), 200
+            else:
+                continue  # 如果不是200，尝试下一个URL
+        except requests.exceptions.RequestException as e:
+            print(f"请求 {url} 失败：{str(e)}")
+            continue  # 发生异常，尝试下一个URL
+
+    return jsonify({"error": "所有翻译服务不可用"}), 503  # 所有URL尝试后仍然失败
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1188)
