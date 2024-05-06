@@ -21,7 +21,7 @@
 
 1. 克隆仓库到本地：
    ```bash
-   git clone https://your-repository-url.git
+   git clone https://github.com/yym68686/DeepLX.git
    cd your-repository-directory
    ```
 
@@ -39,12 +39,14 @@
 
 发送 POST 请求到 `/translate` 端点，包含以下 JSON 数据：
 
-```json
-{
-    "text": "Hello, world!",
+```bash
+curl -X POST http://localhost:1188/translate\?token\=your_access_token \
+-H "Content-Type: application/json" \
+-d '{
+    "text": "Hi",
     "source_lang": "EN",
     "target_lang": "ZH"
-}
+}'
 ```
 
 ### 结果
@@ -67,7 +69,3 @@
 ## 许可证
 
 本项目采用 MIT 许可证。详情请查阅 `LICENSE` 文件。
-
----
-
-通过使用本项目，您可以轻松地集成和使用多个 DeepLX 翻译 API，享受由负载均衡带来的高效和稳定服务。

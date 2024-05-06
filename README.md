@@ -23,7 +23,7 @@ This project is a load balancer built using the Flask framework, designed to pro
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://your-repository-url.git
+   git clone https://github.com/yym68686/DeepLX.git
    cd your-repository-directory
    ```
 
@@ -41,12 +41,14 @@ This project is a load balancer built using the Flask framework, designed to pro
 
 Send a POST request to the `/translate` endpoint with the following JSON data:
 
-```json
-{
-    "text": "Hello, world!",
+```bash
+curl -X POST http://localhost:1188/translate\?token\=your_access_token \
+-H "Content-Type: application/json" \
+-d '{
+    "text": "Hi",
     "source_lang": "EN",
     "target_lang": "ZH"
-}
+}'
 ```
 
 ### Results
@@ -69,7 +71,3 @@ Contributions via Pull Requests or Issues for code improvements and feature sugg
 ## License
 
 This project is licensed under the MIT License. For more details, please refer to the `LICENSE` file.
-
----
-
-By using this project, you can easily integrate and utilize multiple DeepLX translation APIs, enjoying the efficiency and stability provided by load balancing.
